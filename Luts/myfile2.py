@@ -1,0 +1,1 @@
+a = 'Life is good'
