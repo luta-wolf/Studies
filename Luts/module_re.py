@@ -10,6 +10,7 @@ import re
 #Этот метод ищет по заданному шаблону в начале строки.
 #Метод group() - чтобы вывести содержимое искомой подстроки
 
+print('match()')
 result = re.match(r'AV', 'AV Analytics Vidhya AV')
 print (result)
 print(result.group())
@@ -21,6 +22,7 @@ print (result)
 print('-' * 20)
 
 # start() и end() для того, чтобы узнать начальную и конечную позицию найденной строки.
+print('start() и end()')
 result = re.match(r'AV', 'AV Analytics Vidhya AV')
 print(result.start())
 print(result.end())
@@ -29,12 +31,14 @@ print('-' * 20)
 # re.search(pattern, string):
 # Этот метод похож на match(), но он ищет не только в начале строки. Возвращает
 # первое найденное совпадение. Возвращает объект.
+print('search()')
 result = re.search(r'Analytics', 'AV Analytics Vidhya AV')
 print (result)
 print(result.group())
 result = re.search(r'AV', 'AV Analytics Vidhya AV')
 print (result)
 print(result.group())
+print('-' * 20)
 
 a = 'ff\nfffffffffff'
 b = r'ff\nfffffffffff'
@@ -92,50 +96,3 @@ a|b	Соответствует a или b
 ()	Группирует выражение и возвращает найденный текст
 \t, \n, \r	Символ табуляции, новой строки и возврата каретки соответственно
 '''
-
-# Задача 1: Вернуть первое слово из строки
-result = re.findall(r'.', 'AV is largest Analytics community of India')
-print(result)
-result = re.findall(r'\w', 'AV is largest Analytics community of India')
-print(result)
-result = re.findall(r'\w*', 'AV is largest Analytics community of India')
-print(result)
-text = r'AV is largest Analytics community of India'
-result = re.findall(r'\w+', text)
-print(result)
-print('-' * 20)
-
-#Задача посчитать количество знаков препинания в конкретном куске текста.
-string = "It was the best of times, it was the worst of times, " \
-         "it was the age of wisdom, it was the age of foolishness, " \
-         "it was the epoch of belief, it was the epoch of incredulity, " \
-         "it was the season of Light, it was the season of Darkness, " \
-         "it was the spring of hope, it was the winter of despair, " \
-         "we had everything before us, we had nothing before us, " \
-         "we were all going direct to Heaven, we were all going direct " \
-         "the other way – in short, the period was so far like the " \
-         "present period, that some of its noisiest authorities insisted " \
-         "on its being received, for good or for evil, in the superlative " \
-         "degree of comparison only."
-#Первый способ
-target = [';','.',',','–']
-num_puncts = 0
-for punct in target:
-    if punct in string:
-        num_puncts+=string.count(punct)
-print(num_puncts)
-# С помощью модуля re
-pattern = r'[,;.,–]'
-punct = re.findall(pattern,string)
-print(len(punct))
-
-pattern = re.compile(r'[,;.,–]')
-punct = pattern.findall(string)
-print(len(punct))
-
-#Находит в строке подстроки длиной в 6 знаков, начинающиеся с
-# “D” или “d” и заканчивающиеся маленькой “e”
-pattern = r'[dD]....e'
-text = re.findall(pattern,string)
-print(text)
-
