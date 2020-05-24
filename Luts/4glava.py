@@ -149,3 +149,81 @@ M.sort()
 print(M)
 M.reverse()
 print(M)
+M = [[1, 2, 3], # Матрица 3 x 3 в виде вложенных списков
+     [4, 5, 6], # Выражение в квадратных скобках может
+     [7, 8, 9]] # занимать несколько строк
+print(M)
+print(M[1])
+print(M[1][1])
+col2 = [row[1] for row in M] # Выбирает элементы второго столбца
+print(col2)
+col2 = [row[1] + 1 for row in M] # Добавить 1 к каждому элементу в столбце 2
+print(col2)
+col2 = [row[1] for row in M if row[1] % 2 == 0] # отфильтровать нечетные значения
+print(col2)
+diag = [M[i][i] for i in [0, 1, 2]] # Выборка элементов диагонали матрицы
+print(diag)
+doubles = [c * 2 for c in 'spam'] # Дублирование символов в строке
+print(doubles)
+
+# Генераторы
+G = (sum(row) for row in M) # Генератор, возвращающий суммы элементов строк
+print(G)
+print(next(G))
+print(next(G))
+print(next(G))
+list(map(sum, M)) # Отобразить sum на элементы в M
+print(list)
+
+
+# BEGIN YIELD_DELEGATE_FIX
+def f():
+    def do_yield(n):
+        yield n
+    x = 0
+    while True:
+        x += 1
+        yield from do_yield(x)
+# END YIELD_DELEGATE_FIX
+
+if __name__ == '__main__':
+    print('Invoking f() now produces a generator')
+    g = f()
+    print(next(g))
+    print(next(g))
+    print(next(g))
+
+print('-' * 20)
+
+# function version
+def fibon(n):
+    a = b = 1
+    result = []
+    for i in range(n):
+        result.append(a)
+        a, b = b, a + b
+    return result
+
+# generator version
+def fibon2(n):
+    a = b = 1
+    for i in range(n):
+        yield a
+        a, b = b, a + b
+
+
+print(fibon(10))
+for x in fibon2(10):
+    print(x, end=' ')
+print()
+
+def createGenerator() :
+    mylist = range(3)
+    for i in mylist :
+        yield i*i
+
+mygenerator = createGenerator() # создаём генератор
+print(mygenerator) # mygenerator является объектом!
+
+for i in mygenerator:
+    print(i)

@@ -212,9 +212,15 @@ print('-' * 20)
 Вход: 5952869134
 Выход: 8952869134
 '''
-def phone_number(number):
+def phone_number2(number):
     replace_number = re.sub('\d+', '8', number)
     return print(replace_number + number[1:])
+
+def phone_number(number):
+    replace_number = re.sub('^\d{1}', '8', number)
+    return print (replace_number)
+
+
 
 #tests
 phone_number('5952869134')
@@ -225,9 +231,13 @@ phone_number('4952869134')
 string = '101100010000'
 zerro = re.findall(r'[0]+\b', string)
 print(len(''.join(zerro)))
-
-# print(end_zeros(0)) #== 1
-# print(end_zeros(1)) #== 0
-# print(end_zeros(10)) #== 1
-# print(end_zeros(101)) #== 0
-# print(end_zeros(245)) #== 0
+print('-' * 20)
+'''
+Задача 07. Шифровка
+Владимиру потребовалось срочно запутать финансовую документацию. Но так, чтобы это 
+было обратимо.Он не придумал ничего лучше, чем заменить каждое целое число 
+(последовательность цифр) на его куб. Помогите ему.
+'''
+string = 'Было закуплено 12 единиц техники по 410.37 рублей.'
+encryption = re.findall(r'\d+', string)
+print(encryption)
