@@ -241,3 +241,21 @@ print('-' * 20)
 string = 'Было закуплено 12 единиц техники по 410.37 рублей.'
 encryption = re.findall(r'\d+', string)
 print(encryption)
+
+#Задача убрать из текста всю строку, если в ней находится определенное слово
+song = "It was the best of times, it was the worst of times,\n " \
+         "it was the age of wisdom, it was the age of foolishness,\n " \
+         "it was the epoch of belief, it was the epoch of incredulity,\n " \
+         "it was the season of Light, it was the season of Darkness,\n " \
+         "it was the spring of hope, it was the winter of despair,\n " \
+         "we had everything before us, we had nothing before us,\n " \
+         "we were all going direct to Heaven, we were all going direct\n " \
+         "the other way – in short, the period was so far like the\n " \
+         "present period, that some of its noisiest authorities insisted\n " \
+         "on its being received, for good or for evil, in the superlative\n " \
+         "degree of comparison only.\n"
+new_song = []
+for line in song.split('\n'):
+    if 'degree' not in line:
+        new_song.append(line)
+song = '\n'.join(new_song)

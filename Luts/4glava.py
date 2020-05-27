@@ -165,16 +165,35 @@ diag = [M[i][i] for i in [0, 1, 2]] # Выборка элементов диаг
 print(diag)
 doubles = [c * 2 for c in 'spam'] # Дублирование символов в строке
 print(doubles)
+print(list (range (10))) # Создает список
+print(list (range (-6,7,2))) # Создает список
+print('-' * 20)
+print([[х ** 2, х ** 3] for х in range(4)]) # Множество значений,
+print([[x, x / 2, x * 2] for x in range(-6, 7, 2) if x > 0]) # фильтры if
 
 # Генераторы
 G = (sum(row) for row in M) # Генератор, возвращающий суммы элементов строк
 print(G)
 print(next(G))
+print(sum(M[0]))
 print(next(G))
+print(sum(M[1]))
 print(next(G))
-list(map(sum, M)) # Отобразить sum на элементы в M
+print(sum(M[2]))
+print(list(map(sum, M))) # Отобразить sum на элементы в M
 print(list)
+print({sum(row) for row in M}) # Создать множество сумм элементов в строках
+print({i : sum(M[i]) for i in range (3)})# Создать таблицу ключей/значений сумм элементов в строках
+print('-' * 20)
 
+
+#Функция map() применяет функцию к каждому элементу последовательности и возвращает итератор с результатами.
+# Привести все строки в верхний регистр
+list_of_words = ['one', 'two', 'list', '', 'dict']
+print(list_of_words)
+print(map(str.upper, list_of_words))
+print(list(map(str.upper, list_of_words)))
+print('-' * 20)
 
 # BEGIN YIELD_DELEGATE_FIX
 def f():
@@ -227,3 +246,67 @@ print(mygenerator) # mygenerator является объектом!
 
 for i in mygenerator:
     print(i)
+print('-' * 20)
+
+#Словари
+a = {1:'True', 2 : [1,'False']}
+print(a)
+print(type(a))
+print(dir(a))
+D = {'food': 'spam', 'quantity': 4, 'color': 'pink'}
+print(D)
+print(D['food']) # Извлечь значение, связанное с ключом 'food'
+D['quantity'] += 1 # Добавить 1 к значению, связанному с ключом 'quantity'
+D['food'] *= 2
+print(D)
+# Создание словаря
+D = {}
+D['name'] = 'Denis'
+D['job'] = 'Developer'
+D['age'] = 43
+print(D)
+print(D['name'])
+# Создание словаря
+den1 = dict(name = 'Denis', job = 'dev', age = 43) # Ключевые слова
+print(den1)
+den2 = dict(zip(['name', 'job', 'age'], ['Denis', 'dev', 43])) # Связывание вместе
+print(den2)
+print('-' * 20)
+rec = {'name':{'first':'Denis', 'last':'Skrynnikov'}, 'job':['developer', 'saler'], 'age': 43}
+print(rec)
+print(rec['name']) # ’name' - вложенный словарь
+print(rec['name']['last']) # Индексация во вложенном словаре
+print(rec['job'])  # 'jobs' - вложенный список
+print(rec['job'][0]) # Индексация во вложенном списке
+rec['job'].append('janitor') # Расширение списка названий должностей на месте
+print(rec)
+#вложение позволяет строить сложные информационные структуры непосредственно и легко.
+гес = 0 # Теперь область памяти, занимаемая объектом, восстановлена
+D = {'a': 1, 'c': 3, 'b': 2}
+D['e'] = 99
+print(D)
+print(D['c']) # Присваивание новому ключу увеличивает словари
+# print(D['f'])  Ссылка на несуществующий ключ приводит к ошибке
+print('f' in D) # Проверяем наличие ключа 'f' в словаре
+if not 'f' in D:
+     print('missing')
+     print('no, really...')  # Блоки операторов вводятся с отступом
+value = D.get('x', 0) # Индекс со стандартным вариантом
+print(value)
+value = D['x'] if 'x' in D else 0 # Форма выражения if/else
+print(value)
+print(D.keys())
+print(D.values())
+ks = list(D.keys()) # Неупорядоченный список ключей
+print(ks)
+ks.sort() # Отсортированный список ключей
+print(ks)
+for key in ks: # проход по отсортированным ключам
+    print(key, ' => ', D[key])
+
+c = 'spam'
+c.upper()
+print(c)
+print(c.upper())
+for i in 'spam':
+    print(i.upper())
