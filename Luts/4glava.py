@@ -310,3 +310,14 @@ print(c)
 print(c.upper())
 for i in 'spam':
     print(i.upper())
+print('-' * 20)
+
+#Кортежи
+tpl = (1, 2, 3, 4, 5, 6)
+lst = [1, 2, 3, 4, 5, 6]
+print(tpl.__sizeof__())
+print(lst.__sizeof__())
+a = ('hello, world!')
+b = tuple('hello, world!')
+print(a)
+print(b)
