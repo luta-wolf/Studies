@@ -321,3 +321,83 @@ a = ('hello, world!')
 b = tuple('hello, world!')
 print(a)
 print(b)
+
+T = (1, 2, 3, 4) # Кортеж из 4 элементов
+print(len(T))
+print(T + (5, 6)) # Конкатенация
+print(T[0]) # Индексация, нарезание и т.д.
+print(T.index (4)) # Методы кортежей: 4 обнаруживается по смещению 3
+print(T.count(4)) # 4 обнаруживается один раз
+T = (2,) + T[1:] # Создает новый кортеж для нового значения
+print(T)
+T = 'spam', 3.0, [11, 22, 33]
+print(T[1])
+print(T[2][1])
+print('-' * 20)
+
+# Файлы
+f = open('data.txt', 'w')  # Создать новый файл в режиме записи ('w')
+f.write('Hello\n')
+f.write('world\n')
+f.close() # Закрыть для сбрасывания буферов вывода на диск
+f = open('data.txt') # 'r' (чтение) - стандартный режим обработки
+text = f.read() # Прочитать все содержимое файла в строку
+print(text)  # print интерпретирует управляющие символы
+print(text.split()) # Содержимое файла - всегда строка
+'''
+лучший способ чтения файла в наше время — вообще его не читать,
+поскольку файлы предлагают итератор, который автоматически производит чтение
+строка за строкой в циклах for и других контекстах'''
+for line in open('data.txt'): print(line)
+print(type(T))
+print(type(f))
+print(dir(f))
+print(help(f.seek))
+print('-' * 20)
+
+# узнаем абсолютный путь к файлу
+import os
+pit = os.path.abspath('data.txt ')
+print(pit)
+
+#Бинарные файлы / байтовые строки
+import struct
+packed = struct.pack('>i4sh', 7, b'spam', 8) # Создать упакованные двоичные данные
+print(packed) #выдаст: 10 байтов, не объекты и не текст
+file = open ('data.bin', 'wb') # Открыть двоичный файл для записи
+file.write(packed) # Записать упакованные двоичные данные
+file.close()
+
+data = open('data.bin' , 'rb').read() # Открыть/прочитать двоичный файл данных
+print(data) #10 байтов, неизмененные
+print(data[4:8]) # Нарезать байты в середине
+print(list(list(data))) # Последовательность 8-битных байтов
+print(struct.unpack('>i4sh', data)) # Снова распаковать в объекты
+
+
+# Адрес в памяти запрашивается функцией id()
+string = 'Hello'
+print(id(string))
+string += ', world!'
+print(id(string)) #  печатаем адрес (id) получившегося строкового объекта
+print(string)
+
+bi = b'Hello' # Литерал b для объявления байтовой строки
+bi2 = b'\xd0\x9f\xd1\x80...'
+print(bi)
+print(type(bi))
+print(type(bi2))
+for letter in bi:
+    print(letter)
+
+# example_byte = b'привет' # выдаст ошибку: bytes can only contain ASCII literal characters.
+# print(example_byte)      # (используются русские буквы)
+example_string = 'привет'
+print(type(example_string))
+print(example_string)
+encoded_string = example_string.encode(encoding='utf-8') #  кодируем строку в байты
+print(encoded_string)
+print(type(encoded_string))
+print('\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb2\xd0\xb5\xd1\x82')
+decoded_string = encoded_string.decode() # декодируем байты в строку
+print(decoded_string)
