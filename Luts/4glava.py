@@ -401,3 +401,8 @@ print(type(encoded_string))
 print('\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb2\xd0\xb5\xd1\x82')
 decoded_string = encoded_string.decode() # декодируем байты в строку
 print(decoded_string)
+
+# Файлы с текстом Unicode
+S = 'sp\xc4m' # Текст Unicode, отличающийся от ASCII
+print(S)
+print(S[2]) # Последовательность символов
