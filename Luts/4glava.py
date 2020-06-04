@@ -401,8 +401,33 @@ print(type(encoded_string))
 print('\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb2\xd0\xb5\xd1\x82')
 decoded_string = encoded_string.decode() # декодируем байты в строку
 print(decoded_string)
+print('-' * 20)
 
 # Файлы с текстом Unicode
+print('Файлы с текстом Unicode')
 S = 'sp\xc4m' # Текст Unicode, отличающийся от ASCII
 print(S)
 print(S[2]) # Последовательность символов
+file = open('unidata.txt', 'w', encoding='utf-8') # Записать/закодировать текст UTF-8
+file.write(S) #Записано 4 символа
+file.close()
+text = open('unidata.txt', encoding='utf-8').read() # Прочитать/декодировать текст UTF-8
+print(text)
+print(len(text)) # 4 символа (кодовые точки)
+raw = open('unidata.txt', 'rb').read() # Читать закодированные байты
+print(raw)
+print(len(raw)) # 5 байтов в кодировке UTF-8
+print('-' * 20)
+
+print(text.encode('utf-8')) # Вручную кодировать в байты
+print(raw.decode('utf-8')) # Вручную кодировать в строку
+print('-' * 10)
+
+print(text.encode('latin-1')) # Байты отличаются от других
+print(text.encode('utf-16'))
+
+print(len(text.encode('latin-1')), len(text.encode('utf-16')))
+print(b'\xff\xfes\x00p\x00\xc4\x00m\x00'.decode('utf-16')) # Но декодируются в ту же самую строку
+
+# Множества
+
