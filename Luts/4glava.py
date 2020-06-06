@@ -1,3 +1,4 @@
+# Введение в типы объектов Python
 # Числа
 import sys
 print(sys.path)
@@ -336,6 +337,7 @@ print(T[2][1])
 print('-' * 20)
 
 # Файлы
+# Файлы объектов являются главным интерфейсом к внешним файлам на компьютере.
 f = open('data.txt', 'w')  # Создать новый файл в режиме записи ('w')
 f.write('Hello\n')
 f.write('world\n')
@@ -428,6 +430,82 @@ print(text.encode('utf-16'))
 
 print(len(text.encode('latin-1')), len(text.encode('utf-16')))
 print(b'\xff\xfes\x00p\x00\xc4\x00m\x00'.decode('utf-16')) # Но декодируются в ту же самую строку
+# id()
+print(id(raw))
+print(id(b'\xff\xfes\x00p\x00\xc4\x00m\x00'.decode('utf-16')))
 
 # Множества
+X = set('spam') # Создать множество из последовательности
+print(X)
+Y = {'h', 'a', 'm'}
+print(X,Y) # Создать множество с помощью литералов
+print(X & Y) # Пересечение
+print(X | Y) # Объединение
+print(X - Y) # Разность
+print( X > Y) # Надмножество
+print({n ** 2 for n in [1, 2, 3, 4]}) # Включения множеств (возможно неупорядоченных)
+print(list(set([1, 2, 1, 3, 1]))) # Фильтрация дубликатов (возможно неупорядоченных)
+print(set('spam') - set('ham'))   # Нахождение разностей в коллекциях
+print(set('spam') == set('asmp')) # Нейтральная к порядку проверка равенства
+                                  # ('spam' =='asmp' дает False)
+print('p' in set('spam'), 'p' in 'spam', 'ham' in ['eggs', 'spam', 'ham'])
+print(1 / 3) # Математика с плавающей точкой
+print(2 / 3 + 1 / 2)
 
+import decimal # Десятичные числа: фиксированная точность
+d = decimal.Decimal('3.141')
+print(d + 1)
+decimal.getcontext().prec = 2
+print(decimal.Decimal('1.00') / decimal.Decimal('3.00'))
+
+from fractions import Fraction # Дроби: числитель + знаменатель
+f = Fraction(2, 3)
+print(f + 1)
+print(f + Fraction(1, 2))
+
+# Булевские значения
+print(1 < 2, 1 > 2) # Булевские значения
+print(bool('spam')) # Булевское значение объекта
+X = None # Заполнитель None
+print(X)
+L = [None] * 100 # Инициализировать список сотней объектов None
+print(L)
+
+# type()
+print(type(L)) # Типы: типом L является list
+print(type(type(L))) # Даже типы являются объектами
+if type(L) == type([]): print('Yes') # Проверка типа при необходимости. . .
+if type(L) == list: print('Yes') # Использование имени типа
+if isinstance(L, list): print('Yes') # Объектно-ориентированная проверка
+'''
+Поступать так (проверять тип объекта) в программе Python почти всегда неправильно.
+Выполняя проверку на предмет специфического типа в своем коде, вы фактически 
+нарушаете гибкость кода — ограничиваете его работой только с одним типом. 
+Без такой проверки код может быть способен работать с целым диапазоном типов.
+В Python мы имеем дело с интерфейсами объектов (поддерживаемыми операциями), 
+а не с типами. Другими словами нас заботит, что объект делает, а не чем он является.'''
+a = 6
+print(type(a))
+print(type(s))
+
+# Немного о классах
+# Тип объекта моделирующий сотрудника
+class Worker:
+    def __init__(self, name, pay): # Инициализировать при создании
+        self.name = name  # self - новый объект
+        self.pay = pay
+    def lastName(self):
+        return self.name.split()[-1]  # Разбить строку по пробелам
+    def giveRaise(self, percent):
+        self.pay *= (1.0 + percent)  # Обновить pay на месте
+
+bob = Worker('Bob Smith', 50000)  #Создать два экземпляра
+sue = Worker('Sue Jones', 60000)  # Каждый имеет атрибуты name и pay
+print(bob.lastName()) # Вызвать метод: bob - это self
+print(sue.lastName()) # Вызвать метод: bob - это self
+sue.giveRaise(0.10)
+print(sue.pay)
+
+print(type(bob))
+'''Мы расширяем программное обеспечение за счет написания новых классов, 
+а не путем изменения того, что уже работает'''
