@@ -435,6 +435,7 @@ print(id(raw))
 print(id(b'\xff\xfes\x00p\x00\xc4\x00m\x00'.decode('utf-16')))
 
 # Множества
+print('Множества')
 X = set('spam') # Создать множество из последовательности
 print(X)
 Y = {'h', 'a', 'm'}
