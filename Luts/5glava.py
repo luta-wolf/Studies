@@ -355,3 +355,20 @@ print({'bob', 'sue'} < engineers)  # Оба ли сотрудника - инже
 print((engineers | managers) > managers) # Все сотрудники - надмножество менеджеров?
 print(engineers ^ managers) # Кто находится в одной категории, но не в обеих?
 print((engineers | managers) - (engineers ^ managers)) # Пересечение!
+print('-' * 20)
+# Булевские значения
+'''Некоторые могут утверждать, что булевский тип в Python, bool, является по своей
+природе числовым, поскольку два его значения, True и False, являются настроенны­
+ми версиями целых чисел 1 и 0, которые всего лишь выводят себя по-другому.'''
+print(True + 4, False -1)
+print(type(True))
+print(isinstance(True, int))
+print(True == 1) # To же самое значение
+print(True is 1) # Но другой объект: см. следующую главу
+print(True or False) # To же что и 1 or О
+print(True + 4) # М-да
+'''Для серьезного перемалывания чисел,дополнительное расширение NumPy (Numeric Python): 
+матричный тип данных, обработка векторов и библиотеки сложных вычислений.'''
+print(bin(4))
+print(hex(4))
+print()
