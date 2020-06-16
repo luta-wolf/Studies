@@ -441,7 +441,7 @@ print('-' * 20)
 l = [0 for k in range(5)]
 l2 = [0, 0, 0, 0, 0]
 l3 = [0]*5
-print(l, l2, l3)
+print(l, l2, l3,e)
 #2
 d = {'a': 0, 'b': 0}
 d2 = {}
