@@ -144,8 +144,8 @@ print('-' * 20)
 data = open('data.bin', 'rb').read() # Открытие двоичного файла: rb = чтение двоичный
 print(data)  # Строка bytes хранит двоичные данные
 print(data[4:8]) # Действует подобно строкам
-print(data[4:8][0]) # Но на самом деле является 8-битными целыми числами
-print(bin(data[4:8][0]))
+#print(data[4:8][0]) # Но на самом деле является 8-битными целыми числами
+#print(bin(data[4:8][0]))
 print('-' * 20)
 
 # Хранение объектов Python в файлах: преобразования
@@ -216,3 +216,98 @@ F = open('datafile.pkl', 'rb')
 E = pickle.load(F) # Загрузка любого объекта из файла
 print(E)
 print(open('datafile.pkl', 'rb').read()) # так выглят наш словарь в файле (байтстрока)
+print('-' * 20)
+
+# Хранение объектов Python в формате JSON
+name = dict(first = 'Bob', last = 'Smith')
+rec = dict(name = name, job = ['dev', 'mgr'], age = 40.5)
+print(1, rec)
+import json
+s = json.dumps(rec)
+print(s)
+o = json.loads(s)
+print(o)
+print(o == rec)
+json.dump(rec, fp = open('testjson.txt', 'w'), indent=4)
+print(open('testjson.txt').read())
+n = json.load(open('testjson.txt'))
+print(n)
+print('-' * 20)
+# Хранение упакованных двоичных данных: модуль struct
+f = open('data2.bin', 'wb') # Открытие двоичного выходного файла
+import struct
+data = struct.pack('>i4sh', 7, b'spam', 8) # Создание упакованных двоичных данных
+print(data)
+f.write(data) # Запись строки байтов
+f.close()
+f = open('data2.bin', 'rb')
+data = f.read() # Получение упакованных двоичных данных
+print(data)
+values = struct.unpack('>i4sh', data) # Преобразование в объекты Python
+print(values)
+# Диспетчеры контекстов для файлов
+# Другие файловые операции
+print('-' * 20)
+# Обзор и сводка по основным типам
+l = ['abc', [(1, 2), ([3], 4)], 5]
+print(l)
+print(l[1])
+print(l[1][1])
+print(l[1][1][0])
+print(l[1][1][0][0])
+x = [1, 2, 3]
+l = ['a', x, 'b'] # Встроенные ссылки на объект X
+d = {'x': x, 'y': 2} # Встроенные ссылки на объект X
+print(l,'\n', d)
+x[1] = 'surprise' # Изменяет все три ссылки!
+print(l, '\n', d)
+print('-' * 10)
+# Убеждаемся, что ссылки на объекты разные, когда делаем копию
+a = 5
+b = a
+print(a, b, id(a), id(b))
+v1 = 1024
+v2 = v1
+print(v1, v2, id(v1), id(v2))
+v1 = 2048
+print(v1, v2, id(v1), id(v2))
+t1 = (1, 2, 3)
+t2 = t1
+print(t1, t2, id(t1), id(t2))
+t1 = (1, 10, 3)
+print(t1, t2, id(t1), id(t2))
+
+l = [1, 2, 3]
+d = {'a': 1, 'b': 2}
+a = l[:] # Вместо А = L (или list (L))
+b = d.copy() # Вместо В = D (то же самое для множеств)
+print(l, '->', id(l), '\n', a, '->', id(a))
+print(d, '->', id(d), '\n', b, '->', id(b))
+a[1] = 'Ni'
+b['c'] = 'spam'
+print(l,d)
+print(a,b)
+
+x = [1, 2, 3]
+l =['a', x[:], 'b'] # Встраивание копий объекта X
+d = {'х': x[:], 'у' :2}
+
+import copy
+x = copy.deepcopy(l) # Полная копия объекта Y с произвольно глубоким вложением
+print('-' * 10)
+# Сравнения, равенство и истинность
+L1 = [1, ('а', 3)] # Одинаковые значения, уникальные объекты
+L2 = [1, ('а', 3)]
+print(L1 == L2, L1 is L2) # Эквивалентны? Тот же самый объект?
+S1 = 'spam'
+S2 = 'spam'
+print(S1 == S2, S1 is S2)
+S1 = 'a longer string'
+S2 = 'a longer string'
+print(S1 == S2, S1 is S2)
+L1 = [1, ('а' ,3)]
+L2 = [1, ('а' ,2)]
+print(L1 < L2, L1 == L2, L1 > L2) # Меньше, равно, больше
+
+# Смысл понятий "истина" и "ложь" в Python
+
