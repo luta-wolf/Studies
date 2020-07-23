@@ -8,5 +8,5 @@ words = "\n".join(sorted(set(words)))
 file = open('only_one_word.txt2', 'w')  #Объект файл
 file.write(words)
 file.close()
-print(dir(text)) #Объект строка
+print(dir(text)) #Объект строка:
 print(dir(file)) #Объект файл
