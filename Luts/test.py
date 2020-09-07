@@ -43,3 +43,32 @@ import datetime
 t = "01:50:47".split(":")
 print(t)
 print(datetime.timedelta(hours=int(t[0]), minutes=int(t[1]), seconds=int(t[2])).total_seconds())
+
+print(set([1, 3, 5, 7]) - set([1, 2, 4, 5, 6]))
+print(set([1, 2, 4, 5, 6]) - set([1, 3, 5, 7]))
+print('-' * 20)
+
+print(False == False in [False])
+a = 2, 3
+print(a)
+print(type(1/ 2))
+
+a = [1,2,4]
+b = [3,5,6]
+print([a,b])
+print(a + b)
+
+a = '<lastmod>2020-07-23T19:14:21+06:00</lastmod>, <lastmod>2020-07-23T19:15:09+06:00</lastmod>, ' \
+    '<lastmod>2020-07-23T16:54:26+06:00</lastmod>, <lastmod>2020-07-23T16:52:07+06:00</lastmod>'
+b = a.split(',')
+print(b)
+
+a = 'storage;'
+d = a.rstrip(';')
+print(d)
+
+a = 5.96
+print(a.real)
+
+
+
